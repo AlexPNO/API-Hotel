@@ -8,7 +8,7 @@ class Reserva{
     this.dia_saida=dia_saida
     this.num_quarto=num_quarto
     this.num_pessoas=num_pessoas
-    this.status_pagamento=status_pagamento
+    this.status_pagamento=this.validaStatus
     }
 
 
@@ -21,7 +21,14 @@ class Reserva{
 
     }
 
-    validaStatus(){
+    validaStatus(status){
+        const valida=['a fazer','feito']
+        if(valida.indexOf(status>-1)){
+            return status
+        }
+        else{
+            throw new Error("O status dever ser igual a: a fazer ou feito")
+        }
         
     }
 
