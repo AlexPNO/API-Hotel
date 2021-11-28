@@ -10,75 +10,39 @@ const db = new sqlite3.Database(caminhoArq);
 const RESERVAS_SCHEMA = `
 CREATE TABLE IF NOT EXISTS "RESERVAS" (
     "ID" INTEGER PRIMARY KEY AUTOINCREMENT,
-    "DATA DE ENTRADA" varchar(64),
-    "DATA DE SAIDA" varchar(64),
-    "SENHA" varchar(64),
-    "NUMERO QUARTO" ,
-    "NUMERO PESSOAS",
-    "STATUS PAGAMENTO" 
+    "NOME" varchar(64),
+    "DATA_DE_ENTRADA" varchar(64),
+    "DATA_DE_SAIDA" varchar(64),
+    "QUARTO" integer,
+    "NUMERO_PESSOAS" integer,
+    "STATUS_PAGAMENTO" varchar(32) 
 
   );`;
 
-const ADD_USUARIOS_DATA = `
-INSERT INTO USUARIOS (ID, NOME, EMAIL, SENHA)
+const ADD_RESERVAS_DATA = `
+INSERT INTO RESERVAS (ID, NOME, DATA_DE_ENTRADA, DATA_DE_SAIDA, QUARTO, NUMERO_PESSOAS, STATUS_PAGAMENTO)
 VALUES 
-    (1, 'Eugênio Oliveira', 'eugenio.oliveira@bol.com.br', '*******'),
-    (2, 'Olívia Ribeiro', 'olivia.ribeiro@gmail.com', '********'),
-    (3, 'Mirtes Faria Lima', 'mirtes_fl@yahoo.com', '********')
+    (1, 'Eugênio Oliveira', '30/02/2022', '02/03/2022',1,2,'feito'),
+    (2, 'Olívia Ribeiro', '29/12/2021', '02/01/2022',4,5,'a fazer'),
+    (3, 'Mirtes Faria Lima', '30/12/2021', '03/01/2022',2,10, 'feito')
 `
 
-function criaTabelaUsr() {
-    db.run(USUARIOS_SCHEMA, (error)=> {
-       if (error) console.log("Erro ao criar tabela de usuários");
+function criaTabelaRes() {
+    db.run(RESERVAS_SCHEMA, (error)=> {
+       if (error) console.log("Erro ao criar tabela de reservas"+ error);
     });
 }
 
 
-function populaTabelaUsr() {
-    db.run(ADD_USUARIOS_DATA, (error)=> {
-       if (error) console.log("Erro ao popular tabela de usuários");
+function populaTabelaRes() {
+    db.run(ADD_RESERVAS_DATA, (error)=> {
+       if (error) console.log("Erro ao popular tabela de reservas"+ error);
     });
 }
 
-
-//==== Tarefas
-const TAREFAS_SCHEMA = `
-CREATE TABLE IF NOT EXISTS TAREFAS (
-    ID INTEGER PRIMARY KEY AUTOINCREMENT, 
-    TITULO VARCHAR(64),
-    DESCRICAO TEXT,
-    STATUS VARCHAR(32),
-    DATACRIACAO VARCHAR(32),
-    ID_USUARIO INTEGER,
-    FOREIGN KEY(ID_USUARIO) REFERENCES USUARIOD(ID)
-);`;
-
-const ADD_TAREFAS_DATA = `INSERT INTO TAREFAS (TITULO, DESCRICAO, STATUS, DATACRIACAO, ID_USUARIO)
-VALUES 
-       ('Yoga', 'Fazer yoga segunda e quarta', 'Continuo', '2021-01-10', 2),
-       ('Médico', 'Consulta com Dr. Ayrton sexta', 'TODO', '2021-01-13', 1),
-       ('Pagar contas', 'Pagar boletos de água e luz', 'DOING', '2021-01-02', 2),
-       ('Mercado', 'Pegar lista na geladeira e fazer compras', 'TODO', '2021-01-08', 2),
-       ('Dentista', 'Consulta com Dra Andreia sexta', 'TODO', '2021-01-11', 1),
-       ('Pagar financiamento carro', 'Pagar parcela do mês do financiamento', 'Contínuo', '2021-01-05', 3)
-`
-
-function criaTabelaTarefas() {
-    db.run(TAREFAS_SCHEMA, (error)=> {
-        if(error) console.log("Erro ao criar tabela de Tarefas");
-    });
-}
-
-
-function populaTabelaTarefas() {
-    db.run(ADD_TAREFAS_DATA, (error)=> {
-       if (error) console.log("Erro ao popular tabela de Tarefas");
-    });
-}
 
 db.serialize( ()=> {
-    criaTabelaUsr();
-    populaTabelaUsr();
-    criaTabelaTarefas();
-    populaTabelaTarefas();
+    criaTabelaRes();
+    populaTabelaRes();
+    
 });
