@@ -1,5 +1,5 @@
 
-const reservas=(app)=>{
+const reservas=(app,bd)=>{
     app.get('/reservas',(req,res)=>{
         res.json({
             'nome':'Galo',
@@ -14,11 +14,21 @@ const reservas=(app)=>{
 
         }
         catch{
-            throw new Error
+            throw new Error('Teste de erro')
 
         }
     })
 
+    app.delete('/reservas',(req,res)=>{
+
+
+
+    })
+
+
+    app.put('/reservas',(req,res)=>{
+
+    })
 
 }
 

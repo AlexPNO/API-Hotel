@@ -6,7 +6,7 @@ const reservas = require('./controller/reservas-controller')
 
 
 
-reservas(app)
+reservas(app,bd)
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
