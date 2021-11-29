@@ -3,6 +3,7 @@ const app = express()
 const port = 3000
 
 const reservas = require('./controller/reservas-controller')
+const bd = require('./infra/sqlite-db')
 
 
 

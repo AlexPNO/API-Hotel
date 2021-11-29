@@ -4,7 +4,7 @@ Esse arquivo deve ser executado apenas uma vez para que a o banco seja criado e 
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 const caminhoArq = path.resolve(__dirname,'database.db')
-const db = new sqlite3.Database(caminhoArq);
+const bd = new sqlite3.Database(caminhoArq);
 
 //==== Reservas
 const RESERVAS_SCHEMA = `
@@ -28,20 +28,20 @@ VALUES
 `
 
 function criaTabelaRes() {
-    db.run(RESERVAS_SCHEMA, (error)=> {
+    bd.run(RESERVAS_SCHEMA, (error)=> {
        if (error) console.log("Erro ao criar tabela de reservas"+ error);
     });
 }
 
 
 function populaTabelaRes() {
-    db.run(ADD_RESERVAS_DATA, (error)=> {
+    bd.run(ADD_RESERVAS_DATA, (error)=> {
        if (error) console.log("Erro ao popular tabela de reservas"+ error);
     });
 }
 
 
-db.serialize( ()=> {
+bd.serialize( ()=> {
     criaTabelaRes();
     populaTabelaRes();
     

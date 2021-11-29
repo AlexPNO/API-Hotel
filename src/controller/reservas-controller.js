@@ -55,7 +55,13 @@ const reservas=(app,bd)=>{
         const id = parseInt(req.paramns.id)
         try{
             const res = await novaReservaDAO.deletaReserva(id)
+            res.json(resp)
 
+        }catch (error){
+            res.status(404).json({
+                "mensagem":error.message,
+                "erro":true
+            })
         }
 
 
@@ -63,8 +69,8 @@ const reservas=(app,bd)=>{
     })
 
 
-    app.patch('/reservas',(req,res)=>{
-
+    app.patch('/reservas', async (req,res)=>{
+        
     })
 
 }
