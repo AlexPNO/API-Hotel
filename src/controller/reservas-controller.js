@@ -1,32 +1,69 @@
+const Reservas = require('../model/Reservas')
+const ReservasDAO = require('../DAO/ReservasDAO')
+const Reserva = require('../model/Reservas')
+
 
 const reservas=(app,bd)=>{
-    app.get('/reservas',(req,res)=>{
-        res.json({
-            'nome':'Galo',
-            'vulgo':'Atletico-MG'
+    const novaReservaDAO = new ReservasDAO(bd)
+    app.get('/reservas',async (req,res)=>{
+        try{ 
+            const resp = await novaReservaDAO.AllReservas()
+            res.json(resp)
             
             
-        })
-    })
-
-    app.post('/reservas',(req,res)=>{
-        try{ res.send('Galo forte e vingador')
-
-        }
-        catch{
-            throw new Error('Teste de erro')
-
+        } catch(error){
+            res.json(error)
         }
     })
 
-    app.delete('/reservas',(req,res)=>{
+
+
+       
+
+    app.post('/reservas', async (req,res)=>{
+        try{ 
+        const body = req.body
+        const novaReserva = new Reserva(body.nome,body.dia_entrada,body.dia_entrada,body.num_quarto,body.num_pessoas,body.status_pagamento)
+
+        const resp = await novaReservaDAO.InsereReserva(novaReserva)
+        res.json(resp)
+
+
+        }
+        catch(error){
+            res.json({
+                "mensagem":error.message,
+                "erro":true
+            })
+
+        }
+    })
+
+    app.get('/reservas/:id',async (req,res)=>{
+        const id =req.params.id
+        try{
+            const resp = await novaReservaDAO.buscaReservaId(id)
+            res.json(resp)
+        } catch(error){
+            res.status(404).json(error)
+        }
+    })
+
+
+
+    app.delete('/reservas/:id', async (req,res)=>{
+        const id = parseInt(req.paramns.id)
+        try{
+            const res = await novaReservaDAO.deletaReserva(id)
+
+        }
 
 
 
     })
 
 
-    app.put('/reservas',(req,res)=>{
+    app.patch('/reservas',(req,res)=>{
 
     })
 

@@ -70,7 +70,7 @@ buscaReservaId(id){
 }
 
 
-async deletaREserva(id){
+async deletaReserva(id){
     try{
     const reserva = await this.buscaREservaId(id)
     if(reserva.requisicao.length){
