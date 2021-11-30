@@ -13,7 +13,7 @@ const reservas=(app,bd)=>{
             
             
         } catch(error){
-            res.json(error)
+            res.json(error.message)
         }
     })
 
@@ -23,9 +23,10 @@ const reservas=(app,bd)=>{
 
     app.post('/reservas', async (req,res)=>{
         try{ 
+            console.log("testando 1")
         const body = req.body
-        const novaReserva = new Reserva(body.nome,body.dia_entrada,body.dia_saida,body.num_quarto,body.num_pessoas,body.pagamento)
-
+        const novaReserva = new Reserva(body.nome,body.data_de_entrada,body.data_de_saida,body.num_quarto,body.num_pessoas,body.status_pagamento)
+        console.log(novaReserva)
         const resp = await novaReservaDAO.insereReserva(novaReserva)
         res.json(resp)
 
@@ -46,17 +47,18 @@ const reservas=(app,bd)=>{
             const resp = await novaReservaDAO.buscaReservaId(id)
             res.json(resp)
         } catch(error){
-            res.status(404).json(error)
+            res.status(404).json(error.message)
         }
     })
 
 
 
     app.delete('/reservas/:id', async (req,res)=>{
-        const id = parseInt(req.paramns.id)
+        const id = req.paramns.id
+        
         try{
-            const res = await novaReservaDAO.deletaReserva(id)
-            res.json(resp)
+            const response = await novaReservaDAO.deletaReserva(id)
+            res.json(response)
 
         }catch (error){
             res.status(404).json({
@@ -72,9 +74,18 @@ const reservas=(app,bd)=>{
 
     app.patch('/reservas/:id', async (req,res)=>{
         const id = parseInt(req.paramns.id)
+        const body = req.body
+
         try{
-            const res = await novaReservaDAO.atualizaReserva(id,novaReserva)
-            res.json(resp)
+            const reservahttp = novaReservaDAO.buscaReservaId(id)
+            const reservaalvo = reservahttp.requisicao[0]
+
+            if(reservaalvo){
+                const reservaatualizada = new Reserva(
+
+                )
+            }
+         
 
         }catch (error){
             res.status(404).json({

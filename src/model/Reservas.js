@@ -1,8 +1,6 @@
-var id=0;
 
 class Reserva{
     constructor(nome,dia_entrada,dia_saida,num_quarto,num_pessoas,status_pagamento){
-    this.id=id++
     this.nome=nome
     this.dia_entrada=dia_entrada
     this.dia_saida=dia_saida
@@ -36,3 +34,4 @@ class Reserva{
 }
 
 module.exports = Reserva
+
