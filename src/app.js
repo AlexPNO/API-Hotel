@@ -5,6 +5,11 @@ const port = 3000
 const reservas = require('./controller/reservas-controller')
 const bd = require('./infra/sqlite-db')
 
+app.use(express.json())
+app.use((req, res, next)=>{
+  console.log("Rodei o middleware")
+  next()
+})
 
 
 reservas(app,bd)
@@ -14,4 +19,4 @@ app.listen(port, () => {
 })
 
 
-// module.exports = app
+module.exports = app
