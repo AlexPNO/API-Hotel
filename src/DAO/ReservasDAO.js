@@ -82,11 +82,11 @@ buscaReservaId(id){
 async deletaReserva(id){
     try{
     const reserva = await this.buscaReservaId(id)
-    if(reserva.req.length){
+    if(reserva.busca){
         const DELETE = `DELETE FROM RESERVAS WHERE ID = ?`
         return new Promise((resolve,reject)=>{         
             this.bd.run(DELETE,id,(error)=>{
-                // console.log(error)
+                
                 if(error){
                     reject(error.message)
                 } else{

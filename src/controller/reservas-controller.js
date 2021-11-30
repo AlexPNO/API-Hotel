@@ -54,8 +54,7 @@ const reservas=(app,bd)=>{
 
 
     app.delete('/reservas/:id', async (req,res)=>{
-        const id = req.paramns.id
-        
+        const id = req.params.id     
         try{
             const response = await novaReservaDAO.deletaReserva(id)
             res.json(response)
