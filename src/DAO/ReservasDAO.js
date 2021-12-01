@@ -110,15 +110,15 @@ async deletaReserva(id){
 async atualizaReserva(id,novaReserva){
     try{
     const UPDATE=`UPDATE RESERVAS SET 
-    NOME =coalesce(?,nome),
-    DATA_DE_ENTRADA=coalesce(?,data_de_entrada),
-    DATA_DE_SAIDA=coalesce(?,data_de_saida),
-    QUARTO=coalesce(?,quarto),
-    NUMERO_PESSOAS=coalesce(?,numero_pessoas),
-    STATUS_PAGAMENTO=coalesce(?,status_pagamento)
+    NOME =COALESCE(?,nome),
+    DATA_DE_ENTRADA=COALESCE(?,data_de_entrada),
+    DATA_DE_SAIDA=COALESCE(?,data_de_saida),
+    QUARTO=COALESCE(?,quarto),
+    NUMERO_PESSOAS=COALESCE(?,numero_pessoas),
+    STATUS_PAGAMENTO=COALESCE(?,status_pagamento)
     WHERE ID = ?`
     return new Promise((resolve,reject)=>{
-        this.bd.run(UPDATE,[novaReserva.nome,novaReserva.dia_entrada,novaReserva.dia_saida,novaReserva.num_quarto,novaReserva.num_pessoas,id],
+        this.bd.run(UPDATE,[novaReserva.nome,novaReserva.dia_entrada,novaReserva.dia_saida,novaReserva.num_quarto,novaReserva.num_pessoas,novaReserva.status_pagamento,id],
             (error)=>{
                 if(error){
                 reject(error.message)

@@ -75,15 +75,15 @@ const reservas=(app,bd)=>{
         
         const id = parseInt(req.params.id)
         
-        // const body = req.body
+        const body = req.body
 
         try{
             const reservahttp = await novaReservaDAO.buscaReservaId(id)
             console.log(reservahttp.busca.ID)
-            const reservaalvo = reservahttp.busca.ID
-            if(reservaalvo){
+            // const reservaalvo = reservahttp.busca.ID
+            if(id){
                 
-                const resposta = await novaReservaDAO.atualizaReserva(id,reservaalvo)
+                const resposta = await novaReservaDAO.atualizaReserva(id,reservahttp)
                 res.json(resposta)     
 
             } else {

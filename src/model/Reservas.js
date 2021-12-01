@@ -10,12 +10,13 @@ class Reserva{
 
 
 
-    validaEntrada(){
-
-    }
-
-    validaSaida(){
-
+    validaSaida(dia_saida){
+      if(Date(dia_saida)>Date(dia_entrada)){
+          return dia_saida
+      }  
+      else{
+          throw new Error ("A data de saida deve ser maior que a data de entrada")
+      }
     }
 
     validaStatus(status_pagamento){
@@ -25,11 +26,8 @@ class Reserva{
         }
         else{
             throw new Error("O status dever ser igual a: a fazer ou feito")
-        }
-        
+        }     
     }
-
-
 }
 
 module.exports = Reserva
