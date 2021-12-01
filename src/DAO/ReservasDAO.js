@@ -113,9 +113,9 @@ async atualizaReserva(id,novaReserva){
     NOME =coalesce(?,nome),
     DATA_DE_ENTRADA=coalesce(?,data_de_entrada),
     DATA_DE_SAIDA=coalesce(?,data_de_saida),
-    QUARTO=(?,quarto),
-    NUMERO_PESSOAS=(?,numero_pessoas),
-    STATUS_PAGAMENTO=(?,status_pagamento)
+    QUARTO=coalesce(?,quarto),
+    NUMERO_PESSOAS=coalesce(?,numero_pessoas),
+    STATUS_PAGAMENTO=coalesce(?,status_pagamento)
     WHERE ID = ?`
     return new Promise((resolve,reject)=>{
         this.bd.run(UPDATE,[novaReserva.nome,novaReserva.dia_entrada,novaReserva.dia_saida,novaReserva.num_quarto,novaReserva.num_pessoas,id],

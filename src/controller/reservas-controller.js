@@ -72,17 +72,27 @@ const reservas=(app,bd)=>{
 
 
     app.patch('/reservas/:id', async (req,res)=>{
-        const id = parseInt(req.paramns.id)
-        const body = req.body
+        
+        const id = parseInt(req.params.id)
+        
+        // const body = req.body
 
         try{
-            const reservahttp = novaReservaDAO.buscaReservaId(id)
-            const reservaalvo = reservahttp.requisicao[0]
-
+            const reservahttp = await novaReservaDAO.buscaReservaId(id)
+            console.log(reservahttp.busca.ID)
+            const reservaalvo = reservahttp.busca.ID
             if(reservaalvo){
-                const reservaatualizada = new Reserva(
+                
+                const resposta = await novaReservaDAO.atualizaReserva(id,reservaalvo)
+                res.json(resposta)     
 
-                )
+            } else {
+                res.json({
+                    "mensagem": `Usuário com id "${id}" não existe`,
+                    "error" : true
+                })
+            
+
             }
          
 
