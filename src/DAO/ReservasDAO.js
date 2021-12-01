@@ -35,7 +35,7 @@ insereReserva(novaReserva){
     return new Promise((resolve,reject)=>{
         this.bd.run(`INSERT INTO RESERVAS (NOME,DATA_DE_ENTRADA,DATA_DE_SAIDA,QUARTO,NUMERO_PESSOAS,STATUS_PAGAMENTO) VALUES(?,?,?,?,?,?)`,
         [novaReserva.nome,novaReserva.dia_entrada,novaReserva.dia_saida,novaReserva.num_quarto,novaReserva.num_pessoas,novaReserva.status_pagamento],
-        (error)=>{
+        function(error){
             if(error){
                 console.log(error.message)
                 reject({   
@@ -44,8 +44,10 @@ insereReserva(novaReserva){
                 })
             }else{
                 resolve({
-                    "nova entrada":novaReserva, 
+                    "nova entrada":novaReserva,
+                    "id":this.lastID,
                     "error":false
+                     
 
                 })
             }
@@ -119,7 +121,7 @@ async atualizaReserva(id,novaReserva){
         this.bd.run(UPDATE,[novaReserva.nome,novaReserva.dia_entrada,novaReserva.dia_saida,novaReserva.num_quarto,novaReserva.num_pessoas,id],
             (error)=>{
                 if(error){
-                reject(error)
+                reject(error.message)
             }else{
                 resolve({
                     "mensagem": `Reserva com id ${id} atualizado`,

@@ -23,7 +23,7 @@ const reservas=(app,bd)=>{
 
     app.post('/reservas', async (req,res)=>{
         try{ 
-            console.log("testando 1")
+        
         const body = req.body
         const novaReserva = new Reserva(body.nome,body.data_de_entrada,body.data_de_saida,body.num_quarto,body.num_pessoas,body.status_pagamento)
         console.log(novaReserva)

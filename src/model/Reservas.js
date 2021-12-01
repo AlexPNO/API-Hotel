@@ -1,4 +1,3 @@
-
 class Reserva{
     constructor(nome,dia_entrada,dia_saida,num_quarto,num_pessoas,status_pagamento){
     this.nome=nome
