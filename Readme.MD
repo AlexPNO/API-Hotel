@@ -162,15 +162,28 @@ Resposta:
 DELETE: *URL_BASE/reservas/{id}*
 
 Resposta:
+~~~JSON
+
+{
+  "busca": {
+    "ID": 9,
+    "NOME": "Alexandre",
+    "DATA_DE_ENTRADA": "29/08/2021",
+    "DATA_DE_SAIDA": "30/08/2021",
+    "QUARTO": 2,
+    "NUMERO_PESSOAS": 3,
+    "STATUS_PAGAMENTO": "a fazer"
+  },
+  "erro": false
+}
+
 
  ~~~JSON
 {
-  "mensagem": "Reserva excluída com sucesso!",
-  "changes": 1
+  "mensagem": "Reserva com id: 9 foi excluido",
+  "erro": false
 }
 ~~~
 
 ---
 
-## Testes
-`npm run test`
