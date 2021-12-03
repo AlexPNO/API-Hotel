@@ -1,4 +1,4 @@
-## Hotel California API
+## Hotel API
 
 ### Link da API no HEROKU:
 https://apireservas.herokuapp.com/
