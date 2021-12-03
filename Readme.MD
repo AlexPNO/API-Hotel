@@ -55,7 +55,7 @@ RESPOSTA
 
 ~~~JSON
   {
-  {
+  
   "reservas": [
     {
       "ID": 1,
@@ -116,14 +116,30 @@ Modelo a ser utilizado no body, no formato JSON,não enviar dados para data_cria
 
 ~~~JSON
 {
-      
+
+	"nome":"Marjani Satrapi",
+	"data_de_entrada":"10/01/2022",
+	"data_de_saida":"30/01/2022",
+	"num_quarto":7,
+	"num_pessoas":1,
+	"status_pagamento":"feito"
+  
 }
 ~~~
  
  Resposta:
  ~~~JSON
  {
-  
+  "nova entrada": {
+    "nome": "Marjani Satrapi",
+    "dia_entrada": "10/01/2022",
+    "dia_saida": "30/01/2022",
+    "num_quarto": 7,
+    "num_pessoas": 1,
+    "status_pagamento": "feito"
+  },
+  "id": 15,
+  "error": false
 }
 ~~~
 
@@ -176,7 +192,8 @@ Resposta:
   },
   "erro": false
 }
-
+~~~
+Resposta:
 
  ~~~JSON
 {
