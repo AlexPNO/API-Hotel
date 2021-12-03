@@ -112,8 +112,6 @@ Resposta para id = 1:
 
 POST: *URL_BASE/reservas*
 
-Modelo a ser utilizado no body, no formato JSON,não enviar dados para data_criacao e ultima_atualizacao pois são gerados de forma automática via trigger sql:
-
 ~~~JSON
 {
 
@@ -142,8 +140,6 @@ Modelo a ser utilizado no body, no formato JSON,não enviar dados para data_cria
   "error": false
 }
 ~~~
-
-**IMPORTANTE**:
 
 ### **Atualizando reserva**
 
