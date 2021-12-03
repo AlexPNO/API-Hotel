@@ -107,7 +107,7 @@ async deletaReserva(id){
     }
 }
 
-async atualizaReserva(id,novaReserva){
+async atualizaReserva(novaReserva,id){
     try{
     const UPDATE=`UPDATE RESERVAS SET 
     NOME =COALESCE(?,nome),
@@ -125,7 +125,7 @@ async atualizaReserva(id,novaReserva){
             }else{
                 resolve({
                     "mensagem": `Reserva com id ${id} atualizado`,
-                    "reserva": novaReserva,
+                    // "reserva": novaReserva,
                     "erro":false
 
                 })

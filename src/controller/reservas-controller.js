@@ -30,7 +30,6 @@ const reservas=(app,bd)=>{
         const resp = await novaReservaDAO.insereReserva(novaReserva)
         res.json(resp)
 
-
         }
         catch(error){
             res.json({
@@ -71,31 +70,29 @@ const reservas=(app,bd)=>{
     })
 
 
-    app.patch('/reservas/:id', async (req,res)=>{
-        
+    app.patch('/reservas/:id', async (req,res)=>{      
         const id = parseInt(req.params.id)
-        
         const body = req.body
-
+        const novaReserva = new Reserva(body.nome,body.data_de_entrada,body.data_de_saida,body.num_quarto,body.num_pessoas,body.status_pagamento)
+        // console.log(body)
+        // console.log(novaReserva)
         try{
             const reservahttp = await novaReservaDAO.buscaReservaId(id)
-            console.log(reservahttp.busca.ID)
-            // const reservaalvo = reservahttp.busca.ID
-            if(id){
+            console.log(reservahttp)
+          
+            if(reservahttp.busca){
                 
-                const resposta = await novaReservaDAO.atualizaReserva(id,reservahttp)
+                const resposta = await novaReservaDAO.atualizaReserva(novaReserva,id)
                 res.json(resposta)     
 
             } else {
                 res.json({
-                    "mensagem": `Usuário com id "${id}" não existe`,
-                    "error" : true
+                    "mensagem": `Usuário com id ${id} não existe`,
+                    "erro" : true
                 })
             
 
             }
-         
-
         }catch (error){
             res.status(404).json({
                 "mensagem":error.message,
