@@ -5,7 +5,7 @@ https://apireservas.herokuapp.com/
 
 ### Bibliotecas utilizadas:
 * [Nodemon](https://nodemon.io/) - recarregamento automático durante desenvolvimento.
-* [Supertest](https://github.com/visionmedia/supertest#readme) - para testar as rotas.
+<!-- * [Supertest](https://github.com/visionmedia/supertest#readme) - para testar as rotas. -->
 
 
 ### Banco de dados
