@@ -1,11 +1,13 @@
 const express= require('express')
 const app = express()
 const port = 3000
+const cors = require('cors')
 
 const reservas = require('./controller/reservas-controller')
 const bd = require('./infra/sqlite-db')
 
 app.use(express.json())
+// app.use(cors())
 app.use((req, res, next)=>{
   console.log("Rodei o middleware")
   next()
@@ -19,4 +21,4 @@ app.listen(port, () => {
 })
 
 
-module.exports = app
+module.exports = app,cors
